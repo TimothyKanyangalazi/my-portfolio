@@ -7,11 +7,11 @@
     <meta name="description" content="Web designer"/>
     <meta name="keywords " content="Web designer, progremmer, backend developer, appdeveloper"/>
     <meta name="author" content="Timothy kanyangalazi"/>
-    <script src="myScript.js "></script>
+    
     <link rel="stylesheet" type="text/css" href="style.css" />
    
 </head>
-<body class="grad1">
+<body id="grad1">
     
     <header>
         <nav>
@@ -32,11 +32,23 @@
     <hr/>
     
     <main class="text">
-        <ul>
-            <li>Coding</li>
-            <li>Setting up servers</li>
-            <li>Networking</li>
-        </ul>
+        <h5>HTML <span id="html"></span>% </h5>
+    <div class="container">
+        <div class="loader"></div>
+    </div>
+    <h5>CSS <span id="css"></span>%</h5>
+    <div class="container">
+        <div class="loader" style="background-color: orange;"></div>
+    </div>
+    <h5>JAVASCRIPT <span id="js"></span>%</h5>
+    <div class="container">
+        <div class="loader"  style="background-color: red;"></div>
+    </div>
+    <h5>PHP <span id="php"></span>%</h5>
+    <div class="container">
+        <div class="loader"  style="background-color: rgb(34, 124, 160);"></div>
+    </div>
+        
     </main>
     
     <div>
@@ -61,20 +73,47 @@
             </div>
         </div>
         <div>
-            .
+        
         </div>
     </footer>
     </div>
+    
     <script>
-        var theme = document.getElementsByTagName("body");
+        var html = document.getElementById("html");
+        var css = document.getElementById("css");
+        var js = document.getElementById("js");
+        var php = document.getElementById("php");
 
-    function changeTheme(){
-        theme.style.backgroundColor = "white";
+        var loader1 = document.getElementsByClassName('loader')[0];
+        var loader2 = document.getElementsByClassName('loader')[1];
+        var loader3 = document.getElementsByClassName('loader')[2];
+        var loader4 = document.getElementsByClassName('loader')[3];
 
-    }
-    
-    
+        var html_value = 88;
+        var css_value = 54;
+        var js_value = 34;
+        var php_value = 24;
+
+        function myLoader(place, value,p){
+            var incrementor = 0;
+            var timeInterval = setInterval(function(){
+              place.style.width = incrementor++ +'%';
+              p.innerHTML = incrementor;
+              if(incrementor == value){
+                clearInterval(timeInterval);
+              }
+            },value);
+        }
+
+        myLoader(loader1,html_value,html);
+        myLoader(loader2,css_value,css);
+        myLoader(loader3,js_value,js);
+        myLoader(loader4,php_value,php);
+
+
+
     </script>
+   <script src="myScript.js "></script>
 </body>
-
+    
 </html>
