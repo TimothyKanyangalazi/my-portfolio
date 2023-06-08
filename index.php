@@ -17,15 +17,15 @@
     <header>
         <nav>
             
-            <h2 class="header" ><a href="index.html"> Timothy</a></h2>
+            <h2 class="header" ><a href="index.php"> Timothy</a></h2>
             
             <hr/>
             <div class="topnav" >
-                <a href="index.html"> Home </a> &nbsp;&nbsp;
-                <a href="skills.html"> Skills </a> &nbsp;&nbsp;
+                <a href="index.php"> Home </a> &nbsp;&nbsp;
+                <a href="skills.php"> Skills </a> &nbsp;&nbsp;
                 <a href="#"> About </a> &nbsp;&nbsp;
-                <a href="projects.html"> Projects </a> &nbsp;&nbsp;
-                <a href="contact.html"> Contact </a>
+                <a href="projects.php"> Projects </a> &nbsp;&nbsp;
+                <a href="contact.php"> Contact </a>
                 <input type="text" placeholder="Search..">
                 
             </div>
@@ -33,7 +33,40 @@
     </header>
     <hr/>
     
-    <main>
+    <main class="text">
+<?php
+    $server_name = "localhost";
+    $user_name = "root";
+    $password = "";
+    $dbName = "portinfo";
+ 
+    $conn = mysqli_connect($server_name, $user_name, $password,$dbName);
+
+
+    if (!$conn) {
+        echo 
+        die("Failed ". mysqli_connect_error());
+    }
+    
+    
+    $query = "SELECT ProjectID,ProjectName,Progress FROM `projects`;";
+
+    $result = mysqli_query($conn, $query);
+        echo "<strong>PROJECTS</strong><br>";
+    while($row = mysqli_fetch_array($result)){
+        echo  $row["ProjectID"].". ". $row["ProjectName"]." : ". $row["Progress"]."<br>";
+    }
+        echo "<br>";
+    $query = "SELECT SkillID,SkillNAme,SkillRating FROM `skills`;";
+
+    $result = mysqli_query($conn, $query);
+        echo "<strong>SKILLS</strong><br>";
+    while($row = mysqli_fetch_array($result)){
+        echo  $row["SkillID"].". ". $row["SkillNAme"]." : ". $row["SkillRating"]."<br>";
+    }
+
+$conn->close();
+?>
     <div class="row">
         <div class="column">
         <h1>Hi!,<br/> I'am Timothy, A Web Designer</h1>
