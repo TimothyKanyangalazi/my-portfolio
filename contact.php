@@ -11,41 +11,69 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
    
 </head>
-<body class="grad1">
+<body id="grad1">
     
     <header>
         <nav>
             
-            <h2 class="header" ><a href="Homepage.html"> Timothy</a></h2>
+            <h2 class="header" ><a href="index.php"> Timothy</a></h2>
             
             <hr/>
             <div class="topnav" >
-                <a href="Homepage.html"> Home </a> &nbsp;&nbsp;
-                <a href="skills.html"> Skills </a> &nbsp;&nbsp;
+                <a href="index.php"> Home </a> &nbsp;&nbsp;
+                <a href="skills.php"> Skills </a> &nbsp;&nbsp;
                 <a href="#"> About </a> &nbsp;&nbsp;
-                <a href="projects.html"> Projects </a> &nbsp;&nbsp;
-                <a href="contact.html"> Contact </a>
+                <a href="projects.php"> Projects </a> &nbsp;&nbsp;
+                <a href="contact.php"> Contact </a>
                 
             </div>
         </nav>
     </header>
     <hr/>
     
-    <main>
+    <main class="text">
+    <?php
+    $server_name = "localhost";
+    $user_name = "root";
+    $password = "";
+    $dbName = "portinfo";
+ 
+    $conn = mysqli_connect($server_name, $user_name, $password,$dbName);
+
+
+    if (!$conn) {
+        echo 
+        die("Failed ". mysqli_connect_error());
+    }
+    
+    
+    $query = "SELECT ID, FirstName, LastName, Email, Phone FROM `contactdetails`;";
+
+    $result = mysqli_query($conn, $query);
+        echo "<strong>Contact Details</strong><br>";
+    while($row = mysqli_fetch_array($result)){
+        echo  $row["ID"].". ". $row["FirstName"]."  ". $row["LastName"].","." Email: ".$row["Email"].", ".$row["Phone"]."<br>";
+    }
+        echo "<br>";
+    
+
+$conn->close();
+?>
         <form class="text">
-            <label for="name">First Name:</label>
+            <label for="name">First Name:</label><br>
             <input type="text" id="name" placeholder="Enter your First name here"/>
             <br/>
-            <label>Middle name:</label>
+            <label>Middle name:</label><br>
             <input type="text" id="name" placeholder="Middle name is optional"></input>
             <br/>
-            <label>Last Name:</label>
+            <label>Last Name:</label><br>
             <input type="text" id="name" placeholder="Enter your Last Name here"/>
             <br/>
-            <label>Email:</label>
+            <label>Email:</label><br>
+
             <input type="email" id="name" placeholder="Enter your Email here"/>
             <br/>
-            <label>Phone Number:</label>
+            <label>Phone Number:</label><br>
             <input type="number" id="name" placeholder="write your Phone number here"/>
             <br/>
             <label>Comment:</label>
@@ -89,15 +117,7 @@
         </div>
     </footer>
     </div>
-    <script>
-        var theme = document.getElementsByTagName("body");
-
-    function changeTheme(){
-        theme.style.backgroundColor = "white";
-
-    }
-    
-    
-    </script>
+   
 </body>
-
+<script src="myScript.js "></script>
+</html>
